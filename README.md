@@ -8,7 +8,9 @@ PyPackage is a package manager which works a little bit differently - it can be 
 <h2>How is PyPackage made?</h2>
 
 PyPackage is written in Python, tested with Python version 3.7.8.
-It requires the PyPI package <code>urlgrabber</code>, which can be obtained with the command <code>pip3.7 install urlgrabber</code>
+It requires the PyPI package <code>urlgrabber</code>, which can be obtained with the command <code>pip3.7 install urlgrabber</code>.
+
+PyPackage attempts to comply with PyLint and use Black's code style. We use <a href="https://github.com/TheAlcanian/pypackage/actions">GitHub Actions</a> to check for these.
 
 <h2>Why was PyPackage made?</h2>
 
