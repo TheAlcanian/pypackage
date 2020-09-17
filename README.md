@@ -1,3 +1,6 @@
+# PyPackage
+[![black-workflow](https://img.shields.io/github/workflow/status/TheAlcanian/pypackage/Black?label=black%20formatting&style=flat-square)](https://github.com/TheAlcanian/pypackage/actions?query=workflow%3ABlack) [![pylint-workflow](https://img.shields.io/github/workflow/status/TheAlcanian/pypackage/Pylint?label=pylint&style=flat-square)](https://github.com/TheAlcanian/pypackage/actions?query=workflow%3APylint) [![issues-open](https://img.shields.io/github/issues-raw/TheAlcanian/pypackage?label=issues%20open&style=flat-square)](https://github.com/TheAlcanian/pypackage/issues) [![prs-open](https://img.shields.io/github/issues-pr-raw/TheAlcanian/pypackage?label=pull%20requests%20open&style=flat-square)](https://github.com/TheAlcanian/pypackage/pulls) [![total-downloads-all-releases](https://img.shields.io/github/downloads/TheAlcanian/pypackage/total?style=flat-square)](https://github.com/TheAlcanian/pypackage/releases) [![license](https://img.shields.io/github/license/TheAlcanian/pypackage?style=flat-square)](https://unlicense.org/)
+ 
 <h2>What is PyPackage?</h2>
 
 PyPackage is a package manager which works a little bit differently - it can be run by normal users and manages software which comes in archives (think the `.tar.gz` download of Firefox, Discord, etc).
