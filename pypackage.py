@@ -65,63 +65,58 @@ if main_menu_option == 1:
         exit(1)
         
     if get_menu_option in entries:
-        package_temporary_directory = cache_home + entries[get_menu_option]
-        print("Making temporary directory " + package_temporary_directory + "...")
+        package = entries[get_menu_option]
+        package_temp_dir = cache_home + package
+        package_url = config_file['repo'][package]['url']
+        package_name = config_file['repo'][package]['name']
+        if 'dir_to_place' in config_file['repo'][package]:
+            dir_to_place = config_file['repo'][package]['dir_to_place']
+        else:
+            dir_to_place = config_file['dir_to_place'] 
+        print("Making temporary directory " + package_temp_dir + "...")
         try:
-            os.mkdir(package_temporary_directory)
+            os.mkdir(package_temp_dir)
         except FileExistsError:
             print("Temporary directory already exists! This shouldn't happen! Report as a bug!")
-        print("Downloading URL " + config_file['repo'][entries[get_menu_option]]['url'] + " as pypackage_" + entries[get_menu_option] + " and placing in temporary directory...")
+        print("Downloading URL " + package_url + " as pypackage_" + package + " and placing in temporary directory...")
         package_downloader = URLGrabber(timeout = 10.0)
-        package_downloader.urlgrab(config_file['repo'][entries[get_menu_option]]['url'], package_temporary_directory + "/pypackage_" + entries[get_menu_option])
+        package_downloader.urlgrab(config_file['repo'][package]['url'], package_temp_dir + "/pypackage_" + package)
         print("Figuring out library to use... ", end='')
-        if tarfile.is_tarfile(package_temporary_directory + "/pypackage_" + entries[get_menu_option]) == True:
+        if tarfile.is_tarfile(package_temp_dir + "/pypackage_" + package):
             print("Tarfile.")
             print("Extracting...")
-            tar_to_open = tarfile.open(package_temporary_directory + "/pypackage_" + entries[get_menu_option], 'r')
-            tar_to_open.extractall(package_temporary_directory)
+            tar_to_open = tarfile.open(package_temp_dir + "/pypackage_" + package, 'r')
+            tar_to_open.extractall(package_temp_dir)
             tar_to_open.close()
-            os.remove(package_temporary_directory + "/pypackage_" + entries[get_menu_option])
+            os.remove(package_temp_dir + "/pypackage_" + package)
             print("Moving...")
-            if len(os.listdir(package_temporary_directory)) == 1:
-                if os.path.isdir(package_temporary_directory + '/' + os.listdir(package_temporary_directory)[0]):
-                    if 'dir_to_place' in config_file['repo'][entries[get_menu_option]]:
-                        dir_to_place = config_file['repo'][entries[get_menu_option]]['dir_to_place']
-                    else:
-                        dir_to_place = config_file['dir_to_place']
-                    os.rename(package_temporary_directory + '/' + os.listdir(package_temporary_directory)[0], package_temporary_directory + '/' + entries[get_menu_option])
-                    shutil.move(package_temporary_directory + '/' + entries[get_menu_option], dir_to_place)
-                    os.rmdir(package_temporary_directory)
+            if len(os.listdir(package_temp_dir)) == 1:
+                if os.path.isdir(package_temp_dir + '/' + os.listdir(package_temp_dir)[0]):
+                    os.rename(package_temp_dir + '/' + os.listdir(package_temp_dir)[0], package_temp_dir + '/' + package)
+                    shutil.move(package_temp_dir + '/' + package, dir_to_place)
+                    os.rmdir(package_temp_dir)
                 else:
-                    if 'dir_to_place' in config_file['repo'][entries[get_menu_option]]:
-                        dir_to_place = config_file['repo'][entries[get_menu_option]]['dir_to_place']
-                    else:
-                        dir_to_place = config_file['dir_to_place'] 
-                    shutil.move(os.listdir(package_temporary_directory)[0], config_file['repo'][entries[get_menu_option]]['dir_to_place'])
-                    os.rmdir(package_temporary_directory)
-            elif len(os.listdir(package_temporary_directory)) > 1:
-                if 'dir_to_place' in config_file['repo'][entries[get_menu_option]]:
-                    dir_to_place = config_file['repo'][entries[get_menu_option]]['dir_to_place']
-                else:
-                    dir_to_place = config_file['dir_to_place']
-                shutil.move(package_temporary_directory, dir_to_place)
+                    shutil.move(os.listdir(package_temp_dir)[0], config_file['repo'][package]['dir_to_place'])
+                    os.rmdir(package_temp_dir)
+            elif len(os.listdir(package_temp_dir)) > 1:
+                shutil.move(package_temp_dir, dir_to_place)
                 
             print("Done!")
                 
-        elif zipfile.is_zipfile(package_temporary_directory + "/" + entries[get_menu_option]) == True:
+        elif zipfile.is_zipfile(package_temp_dir + "/" + package):
             print("Zipfile.")
             print("Extracting zips is not supported yet, but it is a priority - expect it next update. Cleaning up and quitting!")
-            os.remove(package_temporary_directory + "/pypackage_" + entries[get_menu_option])
-            os.rmdir(package_temporary_directory)
+            os.remove(package_temp_dir + "/pypackage_" + package)
+            os.rmdir(package_temp_dir)
             exit(1)
         else:
             print("Not supported, cleaning up and quitting!")
-            os.remove(package_temporary_directory + "/pypackage_" + entries[get_menu_option])
-            os.rmdir(package_temporary_directory)
+            os.remove(package_temp_dir + "/pypackage_" + package)
+            os.rmdir(package_temp_dir)
             exit(1)
             
         
-        #file_type = subprocess.run(['file', package_temporary_directory + "/" + entries[get_menu_option]], stdout=subprocess.PIPE).stdout.decode('utf-8')
+        #file_type = subprocess.run(['file', package_temp_dir + "/" + package], stdout=subprocess.PIPE).stdout.decode('utf-8')
         #if regsearchmatch("executable", file_type):
         #    print("plain executable.\nNot extracting.")
         #else:
