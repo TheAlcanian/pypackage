@@ -18,8 +18,7 @@ jobs:
         sudo apt-get install libssl-dev libcurl4-openssl-dev
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
-        pip install pylint black
+        pip install pylint
     - name: pylint and black
       run: |
-        black pypackage.py --check -l 111 -t py37
         pylint pypackage.py --const-rgx='[a-z\_][a-z0-9\_]{2,30}$' --disable=line-too-long
