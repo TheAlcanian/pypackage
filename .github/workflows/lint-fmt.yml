@@ -21,5 +21,5 @@ jobs:
         pip install pylint black
     - name: pylint and black
       run: |
-        pylint pypackage.py --const-rgx='[a-z\_][a-z0-9\_]{2,30}$'
         black --check -l 111 -t py37
+        pylint pypackage.py --const-rgx='[a-z\_][a-z0-9\_]{2,30}$' --disable=line-too-long
