@@ -25,4 +25,7 @@ PyPackage is in very early stages of development, and a lot of features are plan
 <h2>How can I help with PyPackage?</h2>
 
 In any way you want! Report bugs, create pull requests, even just starring it helps!
+
+Remember that all contributions must fall under the terms of The Unlicense (which means no taking code from projects w/o licenses, projects with MIT licenses or other "less free" licenses.
+
 I am not accepting any donations at this time, though.
