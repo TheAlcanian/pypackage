@@ -1,0 +1,11 @@
+{
+    "why-doesnt-json-support-comments":"This is a sample configuration file for PyPackage. You can remove this notice. This file goes in your $XDG_CONFIG_HOME directory, which is typically /home/you/.config/. dir_to_place is where the files will go - it is required to be set globally, but you can also add a key of the same name to a package in the repos, which will override the global key. Under the repo key is an example package. URL is where the program is obtained from, name is the name shown in PyPackage's menus.",
+    "dir_to_place":"/home/larry/.local/opt/",
+    "repo": {
+        "example": {
+            "url": "http://example.com/link/to/download.tar.gz",
+            "name": "Example Application",
+            "dir_to_place":"/home/larry/.games/data/"
+        }
+    }
+}
