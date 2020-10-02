@@ -78,7 +78,7 @@ if main_menu_option == 1:
         # if not base 10 num, die
         print("Valid base10 number not provided, quitting!")
         sysexit(1)
-    
+
     if get_menu_option in entries:
         # if input int is in entries
         # make a new var package, set it to the current repo package's name
