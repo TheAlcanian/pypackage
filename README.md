@@ -27,6 +27,6 @@ PyPackage is in very early stages of development, and a lot of features are plan
 
 In any way you want! Report bugs, create pull requests, even just starring it helps!
 
-Remember that all contributions must fall under the terms of The Unlicense (which means no taking code from projects w/o licenses, projects with MIT licenses or other "less free" licenses).
+Remember that all contributions must fall under the terms of The Unlicense, which means no taking code from anything that's not in the public domain. You <i>should</i> be fine with CC0 projects, but I'd stick to Unlicense projects to be safe. Remember, you cannot release something into the public domain without owning it, so no taking code from MIT licenses, projects with no license, etc.
 
 I am not accepting any donations at this time, though.
